@@ -27,7 +27,15 @@ PSO2JSON = {
 		{name: 'Add Special Ability （HP&PP）',   value: 'B07', extend: 100, effect: 'HP(+50),PP(+3)'},
 		{name: 'Add Special Ability （S-ATK&PP）', value: 'B08', extend: 100, effect: 'S-ATK(+30),PP(+3)'},
 		{name: 'Add Special Ability （R-ATK&PP）', value: 'B09', extend: 100, effect: 'R-ATK(+30),PP(+3)'},
-		{name: 'Add Special Ability （T-ATK&PP）', value: 'B10', extend: 100, effect: 'T-ATK(+30),PP(+3)'}
+		{name: 'Add Special Ability （T-ATK&PP）', value: 'B10', extend: 100, effect: 'T-ATK(+30),PP(+3)'},
+		{name: 'Add Special Ability （Offense）', value: 'B11', extend: 100, effect: 'S-ATK(+15),R-ATK(+15),T-ATK(+15),DEX(+25),PP(+1)'},
+		{name: 'Add Special Ability （Defense）', value: 'B12', extend: 100, effect: 'S-DEF(+15),R-DEF(+15),T-DEF(+15),HP(+55),PP(+1)'},
+		{name: 'Add Special Ability （ATK Receptor）', value: 'B13', extend: 100, effect: 'ALL(+5)'},
+		{name: 'Add Special Ability （DEF Receptor）', value: 'B14', extend: 100, effect: 'ALL(+5)'},
+		{name: 'Add Special Ability （Photon Receptor）', value: 'B15', extend: 100, effect: 'ALL(+5)'},
+		{name: 'Add Special Ability （Tenora）',   value: 'B16', extend: 100, effect: 'S-ATK(+35)'},
+		{name: 'Add Special Ability （GRM）',      value: 'B17', extend: 100, effect: 'R-ATK(+35)'},
+		{name: 'Add Special Ability （Youmei）', value: 'B18', extend: 100, effect: 'T-ATK(+35)'},
 	]
 	},
 
@@ -72,6 +80,9 @@ PSO2JSON = {
 		{base: ['BA01', 'BB01', 'BC01'], ref: 'FA01', success:  80},
 		{base: ['BA02', 'BB02', 'BC02'], ref: 'FA02', success:  70},
 		{base: ['BA03', 'BB03', 'BC03'], ref: 'FA03', success:  60},
+		/*ドゥームブレイク + アビリティ*/
+		{base: ['AA03', 'AB03', 'AC03','TI01'], ref: 'FA03', success:  80},
+		{base: ['BA03', 'BB03', 'BC03','TI01'], ref: 'FA03', success:  80},
 		/* ブロウレジスト、ショットレジスト、マインドレジストの組み合わせ */
 		{base: ['HA01', 'HB01', 'HC01'], ref: 'HZ01', success:  80},
 		{base: ['HA02', 'HB02', 'HC02'], ref: 'HZ02', success:  70},
@@ -84,8 +95,16 @@ PSO2JSON = {
 		{base: ['HL01', 'HM01', 'HN01'], ref: 'HZ01', success:  80},
 		{base: ['HL02', 'HM02', 'HN02'], ref: 'HZ02', success:  70},
 		{base: ['HL03', 'HM03', 'HN03'], ref: 'HZ03', success:  60},
+		/*グリフォンソール + アビリティ*/
+		{base: ['HA03', 'HB03', 'HC03','RPC5'], ref: 'HZ03', success:  80},
+		{base: ['HI03', 'HJ03', 'HK03','RPC5'], ref: 'HZ03', success:  80},
+		{base: ['HL03', 'HM03', 'HN03','RPC5'], ref: 'HZ03', success:  80},
 		/* ソールレセプター、ソールの組み合わせを100%とする場合 */
 		{base: ['XA01', 'R*']          , ref: '$$'  , success: 100},
+		/* エクストレセプター、フリクトアルターの組み合わせ(50%) */
+		{base: ['XD01', 'UA*']          , ref: '$$'  , success: 100},
+		/* エクストレセプター、アルターの組み合わせ(50%) */
+		{base: ['XD01', 'UB*']          , ref: '$$'  , success: 100},
 		/* ソールレセプター、特殊ソールの組み合わせ(10%) */
 		{base: ['XA01', 'SA*']          , ref: '$$'  , success: 10},
 		/* ソールレセプター、特殊ソールの組み合わせ(100%) */
@@ -156,6 +175,66 @@ PSO2JSON = {
 		{base: ['SB01', 'ROE1'],ref: 'SC01',success:70},
 		{base: ['SB01', 'ROE1'],ref: 'SC02',success:70},
 		{base: ['SB01', 'ROE1'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、グンネ・ソール) */
+		{base: ['RPD5', 'RA01'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RA01'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RA01'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、ジグモル・ソール) */
+		{base: ['RPD5', 'RA12'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RA12'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RA12'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、ヴォル・ソール) */
+		{base: ['RPD5', 'RA21'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RA21'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RA21'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、クォーツ・ソール) */
+		{base: ['RPD5', 'RA23'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RA23'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RA23'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、クォーツ・ソール) */
+		{base: ['RPD5', 'RB22'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RB22'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RB22'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、ファング・ソール) */
+		{base: ['RPD5', 'RB22'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RB22'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RB22'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、ネプト・ソール) */
+		{base: ['RPD5', 'RC13'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RC13'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RC13'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、スノウ・ソール) */
+		{base: ['RPD5', 'RH21'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RH21'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RH21'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、スノウ・ソール) */
+		{base: ['RPD5', 'RH21'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RH21'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RH21'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、エクス・ソール) */
+		{base: ['RPD5', 'RH23'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RH23'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RH23'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、ヴァーダー・ソール) */
+		{base: ['RPD5', 'RI23'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RI23'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RI23'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、シュレイダ・ソール) */
+		{base: ['RPD5', 'RJ22'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'RJ22'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'RJ22'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、メデューナ・ソール) */
+		{base: ['RPD5', 'ROA2'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'ROA2'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'ROA2'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、リンガ・ソール) */
+		{base: ['RPD5', 'ROC1'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'ROC1'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'ROC1'],ref: 'SC03',success:70},
+		/* ○○・ジ・ソール(フルベガス・ソール、バル・ソール) */
+		{base: ['RPD5', 'ROE1'],ref: 'SC01',success:70},
+		{base: ['RPD5', 'ROE1'],ref: 'SC02',success:70},
+		{base: ['RPD5', 'ROE1'],ref: 'SC03',success:70},
 	],
 
 	/**
@@ -250,7 +329,8 @@ PSO2JSON = {
 	 *   status: 上記「boostPoint」に利用される番号
 	 *           1=ステータス上昇系、2=レジスト上昇系、3=状態異常系、4=特殊能力(スティグマ、ウィンクルム)
 	 *   effect: 効果の説明
-	 */	abilityList: [
+	 */	
+	 abilityList: [
 		/* Offensive Stat Increase (A) */
 		{code: 'AA01', gid: 'A', name: 'Power I',           lvup: 'AA02', extend: [100, 100, 100],                     status: 1, effect: 'S-ATK(+10)'},
 		{code: 'AA02', gid: 'A', name: 'Power II',          lvup: 'AA03', extend: [ 60,  80, 100], generate: [60, 80], status: 1, effect: 'S-ATK(+20)'},
@@ -448,13 +528,14 @@ PSO2JSON = {
 		{code: 'RPA5', gid: 'D', name: 'Magatsu Soul',                    extend: [  0,  50,  80], extup: ['EA', 'EB'],           effect: 'S-DEF(+15),<br>R-DEF(+15),<br>T-DEF(+15),<br>HP(+30),<br>PP(+3)'},
 		{code: 'RPB5', gid: 'D', name: 'Apprentice Soul',                 extend: [  0,  50,  80], extup: ['TC'],                 effect: 'S-ATK(+40),<br>R-ATK(+40),<br>T-ATK(+40)'},
 		{code: 'RPC5', gid: 'D', name: 'Gryphon Soul',                    extend: [  0,  50,  80], extup: ['AA','AB','AC','HZ'],  effect: 'S-ATK(+15),<br>R-ATK(+15),<br>T-ATK(+15),<br>DEX(+15),<br>HP(+5),<br>PP(+3)'},
+		{code: 'RPD5', gid: 'D', name: 'Full Vegas Soul',                extend: [  0,  60,  90],                                     effect: 'S-ATK(+15),<br>R-ATK(+15),<br>T-ATK(+15)'},
 		/* HP/PP Souls (RQ) */
 		{code: 'RQ01', gid: 'D', name: 'Double Soul',                     extend: [  0,  50,  80], extup: ['JA', 'JB', 'JC', 'JD', 'JE', 'JF', 'TC'],    effect: 'HP(+40),<br>PP(+3)'},
 		/* Special Souls (RR) */
 		{code: 'RR01', gid: 'D', name: 'Darkness Soul',                   extend: [  0,  50,  80], extup: ['TE'],                 effect: 'ALL(+15),<br>HP(+15),<br>PP(+2)'},
 		/* Synthesized Souls (SA) */
 		{code: 'SA01', gid: 'D', name: 'Astral Soul',                                                                              effect: 'ALL(+35),<br>HP(+35),<br>PP(+5)'},
-		{code: 'SB01', gid: 'D', name: 'Toh\'oh Soul',                       extend: [  0,  50,  80],                              effect: 'ALL(+10)'},
+		{code: 'SB01', gid: 'D', name: 'Toh\'oh Soul',                       extend: [  0,  60,  90], extup: ['TH'],                               effect: 'ALL(+10)'},
 		{code: 'SC01', gid: 'D', name: 'Act The Soul',                      extend: [  0,  25,  40],                              effect: 'S-ATK(+35),<br>PP(+3)'},
 		{code: 'SC02', gid: 'D', name: 'Till The Soul',                     extend: [  0,  25,  40],                              effect: 'R-ATK(+35),<br>PP(+3)'},
 		{code: 'SC03', gid: 'D', name: 'Magi The Soul',                     extend: [  0,  25,  40],                              effect: 'T-ATK(+35),<br>PP(+3)'},
@@ -463,6 +544,7 @@ PSO2JSON = {
 		{code: 'TB01', gid: 'A+',name: 'Vinculum',                        extend: [-20,  30,  50], status: 4,                     effect: 'S-ATK(+20),<br>R-ATK(+20),<br>T-ATK(+20)'},
 		{code: 'TH01', gid: 'A+',name: 'Yamato Factor',                   extend: [  -20,  30,  50], status: 4,                   effect: 'S-ATK(+10),<br>R-ATK(+20),<br>T-ATK(+10),<br>HP(+20),<br>PP(+1)'},
 		{code: 'TC01', gid: 'A+',name: 'Modulator',                       extend: [  0,  30,  80], status: 5,                     effect: 'S-ATK(+30),<br>R-ATK(+30),<br>T-ATK(+30)'},
+		{code: 'TI01', gid: 'A+',name: 'Doom Break',                  extend: [  0,  50,  80],extup:['FA'],                          effect: 'S-ATK(+15),<br>R-ATK(+15),<br>T-ATK(+15),<br>PP(+2)'},
 		{code: 'TE01', gid: 'A+',name: 'Returner I',        lvup: 'TE02', extend: [  0,  80, 100],               status: 5,                  effect: 'ALL(+3),<br>HP(+3),<br>PP(+1)'},
 		{code: 'TE02', gid: 'A+',name: 'Returner II',       lvup: 'TE03', extend: [  0,  70, 100], generate: [70, 70],      status: 5,       effect: 'ALL(+5),<br>HP(+5),<br>PP(+2)'},
 		{code: 'TE03', gid: 'A+',name: 'Returner III',      lvup: 'TE04', extend: [  0,  50, 100], generate: [50, 50],     status: 5,        effect: 'ALL(+10),<br>HP(+10),<br>PP(+3)'},
@@ -515,15 +597,20 @@ PSO2JSON = {
 		{code: 'WA01', gid: 'E', name: 'Photon Collect',                                                                          effect: 'Boosts status effect affix rate'},
 		{code: 'XA01', gid: 'E', name: 'Soul Receptor',                                                                           effect: 'Greatly increases Soul affix rate'},
 		{code: 'XB01', gid: 'E', name: 'Gift Receptor',                                                                           effect: 'Allows transfer of Gift affixes'},
+		{code: 'XC01', gid: 'E', name: 'Attack Receptor',                                                                             effect: 'Boosts ATK inheritance rate'},
+		{code: 'XC02', gid: 'E', name: 'Guard Receptor',                                                                               effect: 'Boosts DEF inheritance rate'},
+		{code: 'XC03', gid: 'E', name: 'Photon Receptor',                                                                             effect: 'Boosts HP and PP inheritance rate'},
+		{code: 'XD01', gid: 'E', name: 'Ext Receptor',                                                                             effect: 'Boosts Flict,  Alter, status 4 and 5 inheritance rate'},
+		
 		/* Junk (Z) */
-		{code: 'ZA01', gid: 'F', name: 'Trash A',                             extend: [100, 100, 100],                                     effect: 'Pure garbage'},
-		{code: 'ZB01', gid: 'F', name: 'Trash B',                             extend: [100, 100, 100],                                     effect: 'Absolute junk'},
-		{code: 'ZC01', gid: 'F', name: 'Trash C',                             extend: [100, 100, 100],                                     effect: 'Is this really useful?'},
-		{code: 'ZD01', gid: 'F', name: 'Trash D',                             extend: [100, 100, 100],                                     effect: 'No use'},
-		{code: 'ZE01', gid: 'F', name: 'Trash E',                             extend: [100, 100, 100],                                     effect: 'No good effects'},
-		{code: 'ZF01', gid: 'F', name: 'Trash F',                             extend: [100, 100, 100],                                     effect: 'ALL(-100)'},
-		{code: 'ZG01', gid: 'F', name: 'Trash G',                             extend: [100, 100, 100],                                     effect: 'Garbage 7'},
-		{code: 'ZH01', gid: 'F', name: 'Trash H',                             extend: [100, 100, 100],                                     effect: 'Waste'},
-		{code: 'ZI01', gid: 'F', name: 'Trash I',                             extend: [100, 100, 100],                                     effect: 'It finally ends'}
+		{code: 'ZA01', gid: 'F', name: 'Trash A',                             extend: [100, 100, 100],                                     effect: '---'},
+		{code: 'ZB01', gid: 'F', name: 'Trash B',                             extend: [100, 100, 100],                                     effect: '---'},
+		{code: 'ZC01', gid: 'F', name: 'Trash C',                             extend: [100, 100, 100],                                     effect: '---'},
+		{code: 'ZD01', gid: 'F', name: 'Trash D',                             extend: [100, 100, 100],                                     effect: '---'},
+		{code: 'ZE01', gid: 'F', name: 'Trash E',                             extend: [100, 100, 100],                                     effect: '---'},
+		{code: 'ZF01', gid: 'F', name: 'Trash F',                             extend: [100, 100, 100],                                     effect: '---'},
+		{code: 'ZG01', gid: 'F', name: 'Trash G',                             extend: [100, 100, 100],                                     effect: '---'},
+		{code: 'ZH01', gid: 'F', name: 'Trash H',                             extend: [100, 100, 100],                                     effect: '---'},
+		{code: 'ZI01', gid: 'F', name: 'Trash I',                             extend: [100, 100, 100],                                     effect: '---'}
 	]
 };

@@ -198,13 +198,13 @@ Ext.define('PSO2.SynthesisComponent', {
 	 * @property {String} version
 	 * 当コンポーネントのバージョン
 	 */
-	version: '1.46(2016/06/04 ver. EN) [<a href="http://hatsunemiku24.ddo.jp/dodo/">JP</a>]',
+	version: '1.492(2016/09/06 ver. EN) [<a href="http://hatsunemiku24.ddo.jp/dodo/">JP</a>]',
 
 	/**
 	 * @property {String} title
 	 * タイトル
 	 */
-	title: 'PSO2 Affix Simulator',
+	title: 'PSO2 Affixing Simulator',
 
 	/**
 	 * @property {String} constCookieName

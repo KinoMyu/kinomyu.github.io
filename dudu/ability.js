@@ -61,6 +61,12 @@ Ext.define('PSO2.AbilitySet', {
 	/** フォトンコレクトコード */
 	photonCd: 'WA01',
 
+	resepterCd1: 'XC01',
+	resepterCd2: 'XC02',
+	resepterCd3: 'XC03',
+
+	extresepterCd: 'XD01',
+
 	/** 有効な能力の最大値 */
 	maxEnableAbility: 8,
 
@@ -176,6 +182,30 @@ Ext.define('PSO2.AbilitySet', {
 		var me = this;
 
 		return 0 < me.hashStack[me.photonCd];
+	},
+
+	isResepter1: function() {
+		var me = this;
+
+		return 0 < me.hashStack[me.resepterCd1];
+	},
+
+	isResepter2: function() {
+		var me = this;
+
+		return 0 < me.hashStack[me.resepterCd2];
+	},
+
+	isResepter3: function() {
+		var me = this;
+
+		return 0 < me.hashStack[me.resepterCd3];
+	},
+
+	isExtResepter: function() {
+		var me = this;
+
+		return 0 < me.hashStack[me.extresepterCd];
 	},
 
 	/**
@@ -690,12 +720,19 @@ Ext.define('PSO2.AbilityComponent', {
 			gen = rec.get('generate'),
 			status = rec.get('status'),
 			cd = rec.get('code'),
+			cdh = cd.substring(0,1),
+			cdhe = cd.substring(0,2),
+			cdin = cd.substring(2,4),
 			useM = as.isMutation(),
 			useM2 = as.isMutation2(),
 			useP = as.isPhotonCollect(),
+			useR1 = as.isResepter1(),
+			useR2 = as.isResepter2(),
+			useR3 = as.isResepter3(),
+			useE  = as.isExtResepter(),
 			level = me.getLevel(rec.get('name')),
 			s1 = 0, s2 = 0, s3 = 0, s4 = 0, boostFn = function(type) {
-				var sp = 0, sm = 0, sm2 = 0,ss = 0;
+				var sp = 0, sm = 0, sm2 = 0,ss = 0,sr = 0,se = 0;
 
 				/* フォトンコレクト利用時のブースト値 */
 				if (me.constBoostPoint['photon'][type] && me.constBoostPoint['photon'][type][status]){
@@ -717,7 +754,24 @@ Ext.define('PSO2.AbilityComponent', {
 					if (me.constBoostPoint['soul'][type] && me.constBoostPoint['soul'][type][status])
 						ss = me.constBoostPoint['soul'][type][status][level];
 				}
-				return sp + sm + sm2 + ss;
+
+				if(useR1 && cdh == 'A'){
+					sr = 100;
+				}
+
+				if(useR2 && cdh == 'B'){
+					sr = 100;
+				}
+
+				if(useR3 && cdh == 'E'){
+					sr = 100;
+				}
+
+				if(useE && (cdhe == 'AA' || cdhe == 'AB' || cdhe == 'AC' || cdhe == 'EA' || cdhe == 'EB') && (as.levelupHashStack[cd] <= 2 || as.hashStack[cd] <= 2) && cdin == '05'){
+					se = 20;
+				}
+
+				return sp + sm + sm2 + ss + sr + se;
 			};
 
 
@@ -756,6 +810,13 @@ Ext.define('PSO2.AbilityComponent', {
 		if(cd == 'TE03' || cd == 'TE04'){
 			if(as.levelupHashStack[cd] == 2)
 				s4=0;
+		}
+
+		if((useR1 || useR2 || useR3) && (cd.substring(0,1) == 'A' || cd.substring(0,1) == 'B' || cd.substring(0,1) == 'E') && (gen && as.levelupHashStack[cd])){
+			if(as.hashStack[cd] == undefined){
+				s3-=100;
+				s4-=100;
+			}
 		}
 
 		return Math.min(100, Math.max(Math.max(Math.max(s1, s2), s3), s4));
@@ -828,16 +889,35 @@ Ext.define('PSO2.AbilityComponent', {
 			useEx = as.enableCheckMax == nums,
 			useDouble = as.stores[1].exist() && as.stores[2].exist(),
 			store = me.getAbilityStore(),
-			len = list.length, rec, i, success, res = [];
+			len = list.length, rec, i, success, res = [],
+			recCode,optCode;
 
 		/* 現在選択されている追加能力コードを元に確立を計算 */
 		for (i = 0; i < len; i++) {
 			/* レコードを探す */
 			rec = store.findRecord('code', list[i].inputValue);
+			recCode = rec.data.code.substring(0,1);
+			recLevel = rec.data.code.substring(2,4);
+			if(opt.length != 0){
+				optCode = opt[opt.length-1].data.value;
+			}
 
 			if (rec) {
 				/* 確率の取得 */
 				success = me.calcSuccess(as, rec);
+
+				if(optCode){
+					if(optCode == "B13" && recCode == "A" && !as.levelupHashStack[rec.data.code]){
+						success = 100;
+					}
+					if(optCode == "B14" && recCode == "B" && !as.levelupHashStack[rec.data.code]){
+						success = 100;
+					}
+					if(optCode == "B15" && recCode == "E" && !as.levelupHashStack[rec.data.code]){
+						success = 100;
+					}
+				}
+
 				if (useEx) {
 					/* エクストラスロット使用時 */
 					success = parseInt((success * me.constExtra[nums - 1][useDouble]) / 100);
