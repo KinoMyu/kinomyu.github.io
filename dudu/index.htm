@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=4" />
+<meta name="description" content="Engine for simulating an affixing action for Phantasy Star Online 2.">
+<title>PSO2 Affixing Simulator</title>
+<link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="default.css" />
+<script type="text/javascript" src="extjs/ext-all.js"></script>
+<script type="text/javascript" src="extjs/examples/ux/grid/FiltersFeature.js"></script>
+<script type="text/javascript" src="extjs/examples/ux/TabCloseMenu.js"></script>
+<script type="text/javascript" src="extjs/examples/ux/grid/menu/ListMenu.js"></script>
+<script type="text/javascript" src="extjs/examples/ux/grid/menu/RangeMenu.js"></script>
+<script type="text/javascript" src="extjs/examples/ux/grid/filter/Filter.js"></script>
+<script type="text/javascript" src="extjs/examples/ux/grid/filter/StringFilter.js"></script>
+<script type="text/javascript" src="CurrencyField.js"></script>
+<script type="text/javascript" charset="utf-8" src="params.json"></script>
+<script type="text/javascript" charset="utf-8" src="utils.js"></script>
+<script type="text/javascript" charset="utf-8" src="cost.js"></script>
+<script type="text/javascript" charset="utf-8" src="ability.js"></script>
+<script type="text/javascript" charset="utf-8" src="result.js"></script>
+<script type="text/javascript" charset="utf-8" src="synthesis.js"></script>
+<script type="text/javascript">
+Ext.Loader.setConfig({enabled: true});
+Ext.require(['*']);
+Ext.onReady(function() {
+	var noDD = false;
+
+	if (Ext.userAgent) {
+		var ua = Ext.userAgent.toLowerCase();
+		if (0 < ua.indexOf('iphone') || 0 < ua.indexOf('ipad')
+			 || 0 < ua.indexOf('ipod') || 0 < ua.indexOf('android')) {
+			noDD = true;
+		}
+	}
+
+	if (noDD === false) {
+		Ext.tip.QuickTipManager.init();
+	}
+
+	Ext.create('PSO2.SynthesisComponent', {
+		ajaxData: PSO2JSON,
+		maxMaterial: 5, // Support for 5 slots added
+		noDD: noDD
+	});
+});
+</script>
+</head>
+<body></body>
+</html>
