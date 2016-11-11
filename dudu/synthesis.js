@@ -198,7 +198,7 @@ Ext.define('PSO2.SynthesisComponent', {
 	 * @property {String} version
 	 * 当コンポーネントのバージョン
 	 */
-	version: '1.492(2016/09/06 ver. EN) [<a href="http://hatsunemiku24.ddo.jp/dodo/">JP</a>]',
+	version: '1.5-Kino(2016/11/11 ver. EN) [<a href="http://hatsunemiku24.ddo.jp/dodo/">JP</a>]',
 
 	/**
 	 * @property {String} title
