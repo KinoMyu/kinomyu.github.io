@@ -1,32 +1,123 @@
-
+<!DOCTYPE html>
 <html>
+<head>
+  <title>inst</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./slick/slick.css">
+  <!--<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">-->
+  <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+		text-align: center;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+        width: 100%;
+        margin: 100px auto;
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
+
+
+    .slick-slide {
+      transition: all ease-in-out .3s;
+      transform: scale(0.8);
+    }
+
+    .slick-current {
+      transform: scale(1);
+      opacity: 1;
+    }
+	
+	.button {
+	    width: 170px;
+		color: black;
+        margin: 0px 20px;
+		padding: 12px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+	}
+  </style>
+</head>
 <body>
-<h2>inst</h2>
-<p>
-    <li><a href="bgm_inst_aikost.mp3">bgm_inst_aikost.mp3</a></li>
-    <li><a href="bgm_inst_angelp.mp3">bgm_inst_angelp.mp3</a></li>
-    <li><a href="bgm_inst_bcolor.mp3">bgm_inst_bcolor.mp3</a></li>
-    <li><a href="bgm_inst_bnthtr.mp3">bgm_inst_bnthtr.mp3</a></li>
-    <li><a href="bgm_inst_drming.mp3">bgm_inst_drming.mp3</a></li>
-    <li><a href="bgm_inst_drmtrv.mp3">bgm_inst_drmtrv.mp3</a></li>
-    <li><a href="bgm_inst_ethamo.mp3">bgm_inst_ethamo.mp3</a></li>
-    <li><a href="bgm_inst_ftjair.mp3">bgm_inst_ftjair.mp3</a></li>
-    <li><a href="bgm_inst_grwstm.mp3">bgm_inst_grwstm.mp3</a></li>
-    <li><a href="bgm_inst_gsbaby.mp3">bgm_inst_gsbaby.mp3</a></li>
-    <li><a href="bgm_inst_homesf.mp3">bgm_inst_homesf.mp3</a></li>
-    <li><a href="bgm_inst_hsymph.mp3">bgm_inst_hsymph.mp3</a></li>
-    <li><a href="bgm_inst_hzwend.mp3">bgm_inst_hzwend.mp3</a></li>
-    <li><a href="bgm_inst_jireru.mp3">bgm_inst_jireru.mp3</a></li>
-    <li><a href="bgm_inst_kuraki.mp3">bgm_inst_kuraki.mp3</a></li>
-    <li><a href="bgm_inst_meltyf.mp3">bgm_inst_meltyf.mp3</a></li>
-    <li><a href="bgm_inst_nijile.mp3">bgm_inst_nijile.mp3</a></li>
-    <li><a href="bgm_inst_priamb.mp3">bgm_inst_priamb.mp3</a></li>
-    <li><a href="bgm_inst_shtstr.mp3">bgm_inst_shtstr.mp3</a></li>
-    <li><a href="bgm_inst_stdalv.mp3">bgm_inst_stdalv.mp3</a></li>
-    <li><a href="bgm_inst_thanky.mp3">bgm_inst_thanky.mp3</a></li>
-    <li><a href="bgm_inst_welcom.mp3">bgm_inst_welcom.mp3</a></li>
-    <li><a href="bgm_inst_zetbre.mp3">bgm_inst_zetbre.mp3</a></li>
-</p>
+
+  <section class="center slider">
+    <div><img src="./jacket/jacket_bnthtr.png"></div>
+    <div><img src="./jacket/jacket_thanky.png"></div>
+    <div><img src="./jacket/jacket_welcom.png"></div>
+    <div><img src="http://placehold.it/300x300?text=drming"></div>
+    <div><img src="./jacket/jacket_shtstr.png"></div>
+    <div><img src="./jacket/jacket_gsbaby.png"></div>
+    <div><img src="./jacket/jacket_grwstm.png"></div>
+    <div><img src="./jacket/jacket_ftjair.png"></div>
+    <div><img src="./jacket/jacket_stdalv.png"></div>
+    <div><img src="./jacket/jacket_angelp.png"></div>
+    <div><img src="./jacket/jacket_drmtrv.png"></div>
+    <div><img src="./jacket/jacket_priamb.png"></div>
+    <div><img src="./jacket/jacket_homesf.png"></div>
+    <div><img src="./jacket/jacket_kuraki.png"></div>
+    <div><img src="./jacket/jacket_aikost.png"></div>
+    <div><img src="./jacket/jacket_nijile.png"></div>
+    <div><img src="./jacket/jacket_hsymph.png"></div>
+    <div><img src="./jacket/jacket_zetbre.png"></div>
+    <div><img src="./jacket/jacket_jireru.png"></div>
+    <div><img src="./jacket/jacket_meltyf.png"></div>
+    <div><img src="./jacket/jacket_bcolor.png"></div>
+    <div><img src="./jacket/jacket_hzwend.png"></div>
+    <div><img src="./jacket/jacket_ethamo.png"></div>
+  </section>
+   <button class="button" onclick="Play()">Play</button> 
+   <button class="button" onclick="Stop()">Stop</button> 
+   <button class="button" onclick="Download()">Download</button>
+  <iframe id="my_iframe" style="display:none;"></iframe>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+  <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+  var aud = document.createElement("AUDIO");
+  var songs = ["bnthtr", "thanky", "welcom", "drming", "shtstr", "gsbaby", "grwstm", "ftjair", "stdalv", "angelp", "drmtrv", "priamb", "homesf", "kuraki", "aikost", "nijile", "hsymph", "zetbre", "jireru", "meltyf", "bcolor", "hzwend", "ethamo"];
+    $(document).on('ready', function() {
+      $(".center").slick({
+        dots: false,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 7,
+		swipeToSlide: true,
+		arrows: false
+      });
+    });
+	$('.center').on('click', '.slick-slide', function (e) {
+            e.stopPropagation();
+            var index = $(this).data("slick-index");
+            if ($('.center').slick('slickCurrentSlide') !== index) {
+                  $('.center').slick('slickGoTo', index);
+            }
+        });
+function Play() {
+    aud.setAttribute("src","./mp3/bgm_inst_" + songs[$('.center').slick('slickCurrentSlide')] + ".mp3");
+	aud.play();
+}
+function Stop() {
+    aud.pause();
+}
+		
+function Download() {
+    window.location.href = "./mp3/bgm_inst_" + songs[$('.center').slick('slickCurrentSlide')] + ".mp3";
+};
+</script>
+
 </body>
 </html>
-
