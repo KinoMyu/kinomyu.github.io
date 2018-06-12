@@ -89,7 +89,7 @@
   <script type="text/javascript">
   var aud = document.createElement("AUDIO");
   var songs = ["bnthtr", "thanky", "welcom", "drming", "shtstr", "gsbaby", "grwstm", "ftjair", "stdalv", "angelp", "drmtrv", "priamb", "homesf", "kuraki", "aikost", "nijile", "hsymph", "zetbre", "jireru", "meltyf", "bcolor", "hzwend", "ethamo"];
-    $(document).on('ready', function() {
+    //$(document).on('ready', function() {
       $(".center").slick({
         dots: false,
         infinite: true,
@@ -99,7 +99,7 @@
 		arrows: false,
 		touchThreshold: 15
       });
-    });
+    //});
 	$('.center').on('click', '.slick-slide', function (e) {
             e.stopPropagation();
             var index = $(this).data("slick-index");
