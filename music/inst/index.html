@@ -4,6 +4,7 @@
   <title>inst</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="./slick/slick.css">
+  <!--<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">-->
   <style type="text/css">
     html, body {
       margin: 0;
@@ -95,7 +96,8 @@
         centerMode: true,
         slidesToShow: 5,
 		swipeToSlide: true,
-		arrows: false
+		arrows: false,
+		touchThreshold: 15
       });
     });
 	$('.center').on('click', '.slick-slide', function (e) {
