@@ -51,6 +51,15 @@
 		display: inline-block;
 		font-size: 16px;
 	}
+	
+	.input {
+	    width: 608px;
+		color: black;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+	}
   </style>
 </head>
 <body>
@@ -83,6 +92,10 @@
    <button class="button" onclick="Play()">Play</button> 
    <button class="button" onclick="Stop()">Stop</button> 
    <button class="button" onclick="Download()">Download</button>
+   <br>
+   <br>
+   Volume<br>
+   <input class="input" id="vol-control" type="range" min="0" max="100" step="1" value="100" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
    
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
   <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
@@ -117,7 +130,12 @@ function Stop() {
 		
 function Download() {
     window.location.href = "./mp3/bgm_inst_" + songs[$('.center').slick('slickCurrentSlide')] + ".mp3";
-};
+}
+
+function SetVolume(vol)
+{
+    aud.volume = vol / 100;
+}
 </script>
 
 </body>
