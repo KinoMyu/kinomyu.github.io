@@ -2296,14 +2296,10 @@
             .removeClass('slick-active slick-center slick-current')
             .attr('aria-hidden', 'true');
 
-        _.$slides
-            .eq(index)
-            .addClass('slick-current');
+        var _current = _.$slides.eq(index);
+        _current.addClass('slick-current');
 			
-		var ind = index % this.$slides.size();
-        var _current = this.$slides.eq(ind);
         var __index = allSlides.index(_current);
-		//alert(String(ind) + ", " + String(__index));
         var ss = allSlides.eq(__index + this.$slides.size());
         ss.addClass('slick-current');
         ss = allSlides.eq(__index - this.$slides.size());
