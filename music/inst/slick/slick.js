@@ -1237,7 +1237,6 @@
             });
 
             slidesTraversed = Math.abs($(swipedSlide).attr('data-slick-index') - _.currentSlide) || 1;
-
             return slidesTraversed;
 
         } else {
@@ -2300,6 +2299,15 @@
         _.$slides
             .eq(index)
             .addClass('slick-current');
+			
+		var ind = index % this.$slides.size();
+        var _current = this.$slides.eq(ind);
+        var __index = allSlides.index(_current);
+		//alert(String(ind) + ", " + String(__index));
+        var ss = allSlides.eq(__index + this.$slides.size());
+        ss.addClass('slick-current');
+        ss = allSlides.eq(__index - this.$slides.size());
+        ss.addClass('slick-current');
 
         if (_.options.centerMode === true) {
 
