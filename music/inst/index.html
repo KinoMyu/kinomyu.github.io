@@ -24,7 +24,7 @@
     * {
       box-sizing: border-box;
     }
-
+	
     .slider {
         width: 100%;
         padding-top: 5%;
@@ -71,6 +71,15 @@
       transform: none;
 	  filter: brightness(100%);
     }
+	
+	.nowplaying {
+		margin-top: 1%;
+	    z-index: 1;
+		position: relative;
+	    float: left;
+	    font-family: Assistant;
+		font-size: 2vw;
+	}
 	
 	.songname {
 		margin-top: 1%;
@@ -131,7 +140,7 @@
   </style>
 </head>
 <body>
-
+  <div class="nowplaying" id="np"></div>
   <section class="center slider all" id="slickslider">
   </section>
   <section class="spacer all" id="spacer">
@@ -159,6 +168,9 @@
   });
 }
   var aud = document.createElement("AUDIO");
+  aud.onended = function() {
+	  $("#np").html("");
+  }; 
   var songs = ["bnthtr", "thanky", "welcom", "drming", "shtstr", "gsbaby", "grwstm", "ftjair",
                "stdalv", "angelp", "drmtrv", "priamb", "homesf", "kuraki", "aikost", "nijile",
 			   "hsymph", "zetbre", "jireru", "meltyf", "bcolor", "hzwend", "ethamo", "sakuha"];
@@ -213,9 +225,11 @@
 function Play() {
     aud.setAttribute("src","./mp3/bgm_inst_" + songs[$('.center').slick('slickCurrentSlide')] + ".mp3");
 	aud.play();
+	$("#np").html("&nbsp;&nbsp;▶ Now Playing: " + longsongnames[$('.center').slick('slickCurrentSlide')]);
 }
 function Stop() {
     aud.pause();
+	$("#np").html("");
 }
 		
 function Download() {
