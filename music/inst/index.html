@@ -7,11 +7,15 @@
   <!--<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">-->
   <style type="text/css">
   @font-face {
+    font-family: Mirishita;
+    src: url(./font/mirishita.otf);
+  }
+  @font-face {
     font-family: Assistant;
     src: url(./font/assistant.ttf);
   }
     html, body {
-	font-family: assistant;
+	font-family: Assistant;
       margin: 0;
       padding: 0;
 		text-align: center;
@@ -23,13 +27,13 @@
 
     .slider {
         width: 100%;
-        padding-top: 7%;
+        padding-top: 5%;
     }
 	
 	.spacer {
 		border-radius:0 0 100% 100%;
-        margin-top: -7%;
-        padding-bottom: 14%;
+        margin-top: -5%;
+        padding-bottom: 10%;
 		margin-bottom: 1%;
 	}
 	
@@ -61,24 +65,33 @@
     .slick-slide {
       transition: all ease-in-out .3s;
 	  filter: brightness(50%);
-      transform: scale(.8);
+      transform: scale(.8) translateY(-12.5%);
     }
 
     .slick-current {
-      transform: scale(1);
+      transform: none;
 	  filter: brightness(100%);
     }
 	
+	.songname {
+	    font-family: Mirishita;
+	    margin-left: 15.1%;
+	    text-align: left;
+		font-size: 3vw;
+		margin-bottom: 1%;
+        line-height: 2.5ex;
+	}
+	
 	.button {
 	    width: 19%;
-	    font-family: assistant;
+	    font-family: Assistant;
 		text-align: center;
         margin: 0% 3%;
-		padding-top: 1.3%;
-		padding-bottom: 1.3%;
+		padding-top: 0.8%;
+		padding-bottom: 0.8%;
 		text-decoration: none;
 		display: inline-block;
-		font-size: 1.8vw;
+		font-size: 2.4vw;
 		border-radius:5em;
 		border: black;
 		border-style: solid;
@@ -120,38 +133,13 @@
 <body>
 
   <section class="center slider all" id="slickslider">
-    <div><img src="./jacket/jacket_bnthtr.png"></div>
-    <div><img src="./jacket/jacket_thanky.png"></div>
-    <div><img src="./jacket/jacket_welcom.png"></div>
-    <div><img src="https://placehold.it/300x300?text=Dreaming!"></div>
-    <div><img src="./jacket/jacket_shtstr.png"></div>
-    <div><img src="./jacket/jacket_gsbaby.png"></div>
-    <div><img src="./jacket/jacket_grwstm.png"></div>
-    <div><img src="./jacket/jacket_ftjair.png"></div>
-    <div><img src="./jacket/jacket_stdalv.png"></div>
-    <div><img src="./jacket/jacket_angelp.png"></div>
-    <div><img src="./jacket/jacket_drmtrv.png"></div>
-    <div><img src="./jacket/jacket_priamb.png"></div>
-    <div><img src="./jacket/jacket_homesf.png"></div>
-    <div><img src="./jacket/jacket_kuraki.png"></div>
-    <div><img src="./jacket/jacket_aikost.png"></div>
-    <div><img src="./jacket/jacket_nijile.png"></div>
-    <div><img src="./jacket/jacket_hsymph.png"></div>
-    <div><img src="./jacket/jacket_zetbre.png"></div>
-    <div><img src="./jacket/jacket_jireru.png"></div>
-    <div><img src="./jacket/jacket_meltyf.png"></div>
-    <div><img src="./jacket/jacket_bcolor.png"></div>
-    <div><img src="./jacket/jacket_hzwend.png"></div>
-    <div><img src="./jacket/jacket_ethamo.png"></div>
-    <div><img src="./jacket/jacket_sakuha.png"></div>
   </section>
   <section class="spacer all" id="spacer">
   </section>
-   <button class="button redbutton" onclick="Play()">Play</button> 
-   <button class="button whitebutton" onclick="Stop()">Stop</button> 
-   <button class="button whitebutton" onclick="Download()">Download</button>
-   <br>
-   
+  <div class="songname"></div>
+   <button class="button redbutton" onclick="Play()">Play</button>
+   <button class="button whitebutton" onclick="Stop()">Stop</button>
+   <button class="button whitebutton" onclick="Download()">Download</button><br>
   <section class="volume-slider">
    <div class="input">
    Volume<br></div>
@@ -173,13 +161,25 @@
   });
 }
   var aud = document.createElement("AUDIO");
-  var songs = ["bnthtr", "thanky", "welcom", "drming", "shtstr", "gsbaby", "grwstm", "ftjair", "stdalv", "angelp", "drmtrv", "priamb", "homesf", "kuraki", "aikost", "nijile", "hsymph", "zetbre", "jireru", "meltyf", "bcolor", "hzwend", "ethamo", "sakuha"];
+  var songs = ["bnthtr", "thanky", "welcom", "drming", "shtstr", "gsbaby", "grwstm", "ftjair",
+               "stdalv", "angelp", "drmtrv", "priamb", "homesf", "kuraki", "aikost", "nijile",
+			   "hsymph", "zetbre", "jireru", "meltyf", "bcolor", "hzwend", "ethamo", "sakuha"];
   var songgroups = [["bnthtr", "thanky", "welcom", "drming"],
                 ["grwstm", "priamb", "homesf", "aikost", "zetbre", "jireru", "bcolor", "sakuha"],
 				["shtstr", "ftjair", "kuraki", "meltyf", "ethamo"],
 				["gsbaby", "stdalv", "angelp", "drmtrv", "nijile", "hsymph", "hzwend"]];
   var groups = ["all", "princess", "fairy", "angel"];
-    $(document).on('ready', function() {
+  var longsongnames = ["Brand New Theater!", "Thank You!", "Welcome!!", "Dreaming!", "Shooting Stars", "Good-Sleep, Baby♡", "Growing Storm!", "FairyTale ja Irarenai",
+                       "STANDING ALIVE", "Angelic Parade♪", "Dream Traveler", "Princess Be Ambitious!!", "HOME, SWEET FRIENDSHIP", "Kuraki Hoshi, Tooi Tsuki", "Aikotoba wa Start Up!", "Nijiiro letters",
+					   "Hoshikuzu no Symphonia", "ZETTAI × BREAK!! Twinkle Rhythm", "Jireru Heart ni Hi o Tsukete", "Melty Fantasia", "Birth of Color", "Hanazakari Weekend✿", "Eternal Harmony", "Saku wa Ukiyo no Kimi Hanabi"]
+
+	  $(document).on('ready', function() {
+	  var generatedhtml = "";
+	  for(var i = 0; i < songs.length; ++i){
+	    generatedhtml += '<div><img src="./jacket/jacket_' + songs[i] + '.png"></div>';
+	  }
+	  $("#slickslider").html(generatedhtml);
+	  $(".songname").html(longsongnames[0]);
       $(".center").slick({
         dots: false,
         infinite: true,
@@ -210,6 +210,7 @@
 					$("#spacer").addClass(groups[i]);
 				}
 			}
+			$(".songname").html(longsongnames[nextSlide]);
         });
 function Play() {
     aud.setAttribute("src","./mp3/bgm_inst_" + songs[$('.center').slick('slickCurrentSlide')] + ".mp3");
