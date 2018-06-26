@@ -1,0 +1,123 @@
+{
+	"songs": [
+	{
+	    "name": "bnthtr",
+		"longname": "Brand New Theater!",
+		"type": "all"
+	},
+	{
+		"name": "thanky",
+		"longname": "Thank You!",
+		"type": "all"
+	},
+	{
+		"name": "welcom",
+		"longname": "Welcome!!",
+		"type": "all"
+	},
+	{
+		"name": "drming",
+		"longname": "Dreaming!",
+		"type": "all"
+	},
+	{
+		"name": "shtstr",
+		"longname": "Shooting Stars",
+		"type": "fairy"
+	},
+	{
+		"name": "gsbaby",
+		"longname": "Good-Sleep, Baby♡",
+		"type": "angel"
+	},
+	{
+		"name": "grwstm",
+		"longname": "Growing Storm!",
+		"type": "princess"
+	},
+	{
+		"name": "ftjair",
+		"longname": "FairyTale ja Irarenai",
+		"type": "fairy"
+	},
+    {
+		"name": "stdalv",
+		"longname": "STANDING ALIVE",
+		"type": "angel"
+	},
+	{
+		"name": "angelp",
+		"longname": "Angelic Parade♪",
+		"type": "angel"
+	},
+	{
+		"name": "drmtrv",
+		"longname": "Dream Traveler",
+		"type": "angel"
+	},
+	{
+		"name": "priamb",
+		"longname": "Princess Be Ambitious!!",
+		"type": "princess"
+	},
+	{
+		"name": "homesf",
+		"longname": "HOME, SWEET FRIENDSHIP",
+		"type": "princess"
+	},
+	{
+		"name": "kuraki",
+		"longname": "Kuraki Hoshi, Tooi Tsuki",
+		"type": "fairy"
+	},
+	{
+		"name": "aikost",
+		"longname": "Aikotoba wa Start Up!",
+		"type": "princess"
+	},
+	{
+		"name": "nijile",
+		"longname": "Nijiiro letters",
+		"type": "angel"
+	},
+	{
+		"name": "hsymph",
+		"longname": "Hoshikuzu no Symphonia",
+		"type": "angel"
+	},
+	{
+		"name": "zetbre",
+		"longname": "ZETTAI × BREAK!! Twinkle Rhythm",
+		"type": "princess"
+	},
+	{
+		"name": "jireru",
+		"longname": "Jireru Heart ni Hi o Tsukete",
+		"type": "princess"
+	},
+	{
+		"name": "meltyf",
+		"longname": "Melty Fantasia",
+		"type": "fairy"
+	},
+	{
+		"name": "bcolor",
+		"longname": "Birth of Color",
+		"type": "princess"
+	},
+	{
+		"name": "hzwend",
+		"longname": "Hanazakari Weekend✿",
+		"type": "angel"
+	},
+	{
+		"name": "ethamo",
+		"longname": "Eternal Harmony",
+		"type": "fairy"
+	},
+	{
+		"name": "sakuha",
+		"longname": "Saku wa Ukiyo no Kimi Hanabi",
+		"type": "princess"
+	}]
+}

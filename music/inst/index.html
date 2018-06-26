@@ -75,6 +75,7 @@
 	
 	.nowplaying {
 		margin-top: 1%;
+		margin-left: 1%;
 	    z-index: 1;
 		position: relative;
 	    float: left;
@@ -198,104 +199,103 @@
 </head>
 <body>
   <div class="nowplaying" id="np"></div>
-  <section class="slider all" id="slickslider">
-  </section>
-  <section class="spacer all" id="spacer">
-  </section>
+  <div class="slider" id="slickslider"></div>
+  <div class="spacer" id="spacer"></div>
   <div class="songname"></div>
-   <button class="button redbutton" onclick="Play()">Play</button><button class="button whitebutton" onclick="Stop()">Stop</button><button class="button whitebutton" onclick="Download()">Download</button><br>
+    <button class="button redbutton" onclick="Play()">Play</button><button class="button whitebutton" onclick="Stop()">Stop</button><button class="button whitebutton" onclick="Download()">Download</button><br>
   <section class="volume-slider">
-   Volume<br>
-   <input class="input" type="range" min="0" max="100.0" step=".1" value="100" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+    Volume<br>
+    <input class="input" type="range" min="0" max="100.0" step=".1" value="100" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
   </section>
    
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
   <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript">
-  if (!Array.prototype.includes) {
-  Object.defineProperty(Array.prototype, "includes", {
-    enumerable: false,
-    value: function(obj) {
-        var newArr = this.filter(function(el) {
-          return el == obj;
-        });
-        return newArr.length > 0;
-      }
-  });
-}
-  var aud = document.createElement("AUDIO");
-  aud.onended = function() {
-	  $("#np").html("");
-  }; 
-  var songs = ["bnthtr", "thanky", "welcom", "drming", "shtstr", "gsbaby", "grwstm", "ftjair",
-               "stdalv", "angelp", "drmtrv", "priamb", "homesf", "kuraki", "aikost", "nijile",
-			   "hsymph", "zetbre", "jireru", "meltyf", "bcolor", "hzwend", "ethamo", "sakuha"];
-  var songgroups = [["bnthtr", "thanky", "welcom", "drming"],
-                ["grwstm", "priamb", "homesf", "aikost", "zetbre", "jireru", "bcolor", "sakuha"],
-				["shtstr", "ftjair", "kuraki", "meltyf", "ethamo"],
-				["gsbaby", "stdalv", "angelp", "drmtrv", "nijile", "hsymph", "hzwend"]];
-  var groups = ["all", "princess", "fairy", "angel"];
-  var longsongnames = ["Brand New Theater!", "Thank You!", "Welcome!!", "Dreaming!", "Shooting Stars", "Good-Sleep, Baby♡", "Growing Storm!", "FairyTale ja Irarenai",
-                       "STANDING ALIVE", "Angelic Parade♪", "Dream Traveler", "Princess Be Ambitious!!", "HOME, SWEET FRIENDSHIP", "Kuraki Hoshi, Tooi Tsuki", "Aikotoba wa Start Up!", "Nijiiro letters",
-					   "Hoshikuzu no Symphonia", "ZETTAI × BREAK!! Twinkle Rhythm", "Jireru Heart ni Hi o Tsukete", "Melty Fantasia", "Birth of Color", "Hanazakari Weekend✿", "Eternal Harmony", "Saku wa Ukiyo no Kimi Hanabi"]
 
-	  $(document).on('ready', function() {
-	  var generatedhtml = "";
-	  for(var i = 0; i < songs.length; ++i){
-	    generatedhtml += '<div><img src="./jacket/jacket_' + songs[i] + '.png"></div>';
-	  }
-	  $("#slickslider").html(generatedhtml);
-	  $(".songname").html(longsongnames[0]);
-      $(".slider").slick({
-        dots: false,
-        infinite: true,
-        centerMode: true,
-        slidesToShow: 5,
-		swipeToSlide: true,
-		arrows: false,
-		touchThreshold: 15
-      });
+if (!Array.prototype.includes) {
+    Object.defineProperty(Array.prototype, "includes", {
+        enumerable: false,
+        value: function(obj) {
+            var newArr = this.filter(function(el) {
+                return el == obj;
+            });
+            return newArr.length > 0;
+        }
     });
-	$('.slider').on('click', '.slick-slide', function (e) {
-            e.stopPropagation();
-            var index = $(this).data("slick-index");
-            if ($('.slider').slick('slickCurrentSlide') !== index) {
-                  $('.slider').slick('slickGoTo', index);
-            }
-        });
-	$('.slider').on('beforeChange', function (e, slick, currSlide, nextSlide) {
-			for(var i = 0; i < 4; ++i){
-				if($("#slickslider").hasClass(groups[i]))
-				{
-					$("#slickslider").removeClass(groups[i]);
-					$("#spacer").removeClass(groups[i]);
-				}
-				if(songgroups[i].includes(songs[nextSlide]))
-				{
-					$("#slickslider").addClass(groups[i]);
-					$("#spacer").addClass(groups[i]);
-				}
-			}
-			$(".songname").html(longsongnames[nextSlide]);
-        });
-function Play() {
-    aud.setAttribute("src","./mp3/bgm_inst_" + songs[$('.slider').slick('slickCurrentSlide')] + ".mp3");
-	aud.play();
-	$("#np").html("&nbsp;&nbsp;▶ Now Playing: " + longsongnames[$('.slider').slick('slickCurrentSlide')]);
 }
+
+function addColor(songtype)
+{
+	$("#slickslider").addClass(songtype);
+	$("#spacer").addClass(songtype);
+}
+
+function removeColor(songtype)
+{
+	$("#slickslider").removeClass(songtype);
+	$("#spacer").removeClass(songtype);
+}
+
+var aud = document.createElement("AUDIO");
+aud.onended = function() {
+    $("#np").html("");
+};
+var songdata;
+
+$(document).on('ready', function() {
+	$.getJSON("./songs.json", function(json) {
+		songdata = json.songs;
+		var generatedhtml = "";
+		$.each(songdata, function(i, data) {
+			generatedhtml += '<div><img src="./jacket/jacket_' + data.name + '.png"></div>';
+		});
+		$("#slickslider").html(generatedhtml);
+		$(".songname").html(songdata[0].longname);
+		addColor(songdata[0].type);
+		$(".slider").slick({
+			dots: false,
+			infinite: true,
+			centerMode: true,
+			slidesToShow: 5,
+			swipeToSlide: true,
+			arrows: false,
+			touchThreshold: 15
+		});
+	});
+});
+$('.slider').on('click', '.slick-slide', function (e) {
+		e.stopPropagation();
+		var index = $(this).data("slick-index");
+		if ($('.slider').slick('slickCurrentSlide') !== index) {
+			  $('.slider').slick('slickGoTo', index);
+		}
+	});
+$('.slider').on('beforeChange', function (e, slick, currSlide, nextSlide) {
+	removeColor(songdata[currSlide].type);
+	addColor(songdata[nextSlide].type);
+	$(".songname").html(songdata[nextSlide].longname);
+});
+	
+function Play() {
+    aud.setAttribute("src","./mp3/bgm_inst_" + songdata[$('.slider').slick('slickCurrentSlide')].name + ".mp3");
+	aud.play();
+	$("#np").html("▶ Now Playing: " + songdata[$('.slider').slick('slickCurrentSlide')].longname);
+}
+
 function Stop() {
     aud.pause();
 	$("#np").html("");
 }
 		
 function Download() {
-    window.location.href = "./mp3/bgm_inst_" + songs[$('.slider').slick('slickCurrentSlide')] + ".mp3";
+    window.location.href = "./mp3/bgm_inst_" + songdata[$('.slider').slick('slickCurrentSlide')].name + ".mp3";
 }
 
 function SetVolume(vol)
 {
     aud.volume = vol / 100;
 }
+
 </script>
 
 </body>
