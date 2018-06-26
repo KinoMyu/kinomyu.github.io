@@ -4,26 +4,27 @@
   <title>inst</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="./slick/slick.css">
-  <!--<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">-->
   <style type="text/css">
-  @font-face {
-    font-family: Mirishita;
-    src: url(./font/mirishita.ttf);
-  }
-  @font-face {
-    font-family: Assistant;
-    src: url(./font/assistant.ttf);
-  }
-    html, body {
-	font-family: Assistant;
-      margin: 0;
-      padding: 0;
+    @font-face {
+        font-family: Mirishita;
+        src: url(./font/mirishita.ttf);
+    }
+  
+    @font-face {
+        font-family: Assistant;
+        src: url(./font/assistant.ttf);
+    }
+    
+	html, body {
+	    font-family: Assistant;
+        margin: 0;
+        padding: 0;
 		text-align: center;
 		background-color: #FDFDFD;
     }
 
     * {
-      box-sizing: border-box;
+        box-sizing: border-box;
     }
 	
     .slider {
@@ -202,11 +203,11 @@
   <div class="slider" id="slickslider"></div>
   <div class="spacer" id="spacer"></div>
   <div class="songname"></div>
-    <button class="button redbutton" onclick="Play()">Play</button><button class="button whitebutton" onclick="Stop()">Stop</button><button class="button whitebutton" onclick="Download()">Download</button><br>
-  <section class="volume-slider">
+    <button class="button redbutton" onclick="Play()">Play</button><button class="button whitebutton" onclick="Stop()">Stop</button><a id="mp3link" href="./mp3/bgm_inst_bnthtr.mp3"><button class="button whitebutton">Download</button></a><br>
+  <div class="volume-slider">
     Volume<br>
     <input class="input" type="range" min="0" max="100.0" step=".1" value="100" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
-  </section>
+  </div>
    
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
   <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
@@ -240,6 +241,7 @@ var aud = document.createElement("AUDIO");
 aud.onended = function() {
     $("#np").html("");
 };
+
 var songdata;
 
 $(document).on('ready', function() {
@@ -263,17 +265,20 @@ $(document).on('ready', function() {
 		});
 	});
 });
+
 $('.slider').on('click', '.slick-slide', function (e) {
-		e.stopPropagation();
-		var index = $(this).data("slick-index");
-		if ($('.slider').slick('slickCurrentSlide') !== index) {
-			  $('.slider').slick('slickGoTo', index);
-		}
-	});
+	e.stopPropagation();
+	var index = $(this).data("slick-index");
+	if ($('.slider').slick('slickCurrentSlide') !== index) {
+	    $('.slider').slick('slickGoTo', index);
+	}
+});
+
 $('.slider').on('beforeChange', function (e, slick, currSlide, nextSlide) {
 	removeColor(songdata[currSlide].type);
 	addColor(songdata[nextSlide].type);
 	$(".songname").html(songdata[nextSlide].longname);
+	$("#mp3link").attr("href", "./mp3/bgm_inst_" + songdata[nextSlide].name + ".mp3");
 });
 	
 function Play() {
@@ -285,10 +290,6 @@ function Play() {
 function Stop() {
     aud.pause();
 	$("#np").html("");
-}
-		
-function Download() {
-    window.location.href = "./mp3/bgm_inst_" + songdata[$('.slider').slick('slickCurrentSlide')].name + ".mp3";
 }
 
 function SetVolume(vol)
