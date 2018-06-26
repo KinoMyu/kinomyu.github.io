@@ -295,7 +295,7 @@ function Stop() {
 
 function SetVolume(vol)
 {
-    aud.volume = vol / 100;
+    aud.volume = Math.pow(vol / 100, 2.0);
 }
 
 </script>
