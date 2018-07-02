@@ -1,5 +1,4 @@
 from urllib.request import urlretrieve
-import lz4
 import http.client
 import json
 from itertools import islice
@@ -91,8 +90,8 @@ with open('MillionLive\\' + 'MillionLive.manifest', "rb" ) as f:
                         hName = f.read(nSize).decode("ASCII")
                         #if 'song3' in nString:
                         if True: # filter files here
-                            print(hName, nString)
-                        #print('Hello ' + str(i))
+                            #print(hName, nString)
+                            #print('Hello ' + str(i))
                             fileName.append(nString)
                             hashName.append(hName)
                 except:
