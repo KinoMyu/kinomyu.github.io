@@ -124,5 +124,15 @@
 		"name": "sakuha",
 		"longname": "Saku wa Ukiyo no Kimi Hanabi",
 		"type": "princess"
+	},
+	{
+		"name": "aikane_full",
+		"longname": "AIKANE?",
+		"type": "angel"
+	},
+	{
+		"name": "startlip_full",
+		"longname": "Startrip",
+		"type": "fairy"
 	}]
 }
