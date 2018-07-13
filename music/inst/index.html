@@ -207,7 +207,7 @@
     <button class="button redbutton" onclick="Play()">Play</button><button class="button whitebutton" onclick="Stop()">Stop</button><a id="mp3link" href="./mp3/bgm_inst_bnthtr.mp3"><button class="button whitebutton">Download</button></a><br>
   <div class="volume-slider">
     Volume<br>
-    <input class="input" type="range" min="0" max="100.0" step=".1" value="100" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+    <input id="volslider" class="input" type="range" min="0" max="100.0" step=".1" value="100" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
   </div>
    
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
@@ -283,6 +283,7 @@ $('.slider').on('beforeChange', function (e, slick, currSlide, nextSlide) {
 });
 	
 function Play() {
+    aud.volume = Math.pow($("#volslider").val() / 100, 2.0);
     aud.setAttribute("src","./mp3/bgm_inst_" + songdata[$('.slider').slick('slickCurrentSlide')].name + ".mp3");
 	aud.play();
 	$("#np").html("▶ Now Playing: " + songdata[$('.slider').slick('slickCurrentSlide')].longname);
