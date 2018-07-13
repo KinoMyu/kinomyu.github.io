@@ -239,6 +239,7 @@ function removeColor(songtype)
 }
 
 var aud = document.createElement("AUDIO");
+aud.volume = Math.pow($("#volslider").val() / 100, 2.0);
 aud.onended = function() {
     $("#np").html("");
 };
@@ -283,7 +284,6 @@ $('.slider').on('beforeChange', function (e, slick, currSlide, nextSlide) {
 });
 	
 function Play() {
-    aud.volume = Math.pow($("#volslider").val() / 100, 2.0);
     aud.setAttribute("src","./mp3/bgm_inst_" + songdata[$('.slider').slick('slickCurrentSlide')].name + ".mp3");
 	aud.play();
 	$("#np").html("▶ Now Playing: " + songdata[$('.slider').slick('slickCurrentSlide')].longname);
