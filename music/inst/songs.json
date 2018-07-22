@@ -26,6 +26,16 @@
 		"type": "all"
 	},
 	{
+		"name": "aikane_full",
+		"longname": "AIKANE?",
+		"type": "angel"
+	},
+	{
+		"name": "startlip_full",
+		"longname": "Startrip",
+		"type": "fairy"
+	},
+	{
 		"name": "shtstr",
 		"longname": "Shooting Stars",
 		"type": "fairy"
@@ -129,15 +139,5 @@
 		"name": "hmt001",
 		"longname": "Blooming Star",
 		"type": "all"
-	},
-	{
-		"name": "aikane_full",
-		"longname": "AIKANE?",
-		"type": "angel"
-	},
-	{
-		"name": "startlip_full",
-		"longname": "Startrip",
-		"type": "fairy"
 	}]
 }
