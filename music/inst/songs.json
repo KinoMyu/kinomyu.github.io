@@ -1,5 +1,5 @@
 {
-	"songs": [
+	"songs": [[
 	{
 	    "name": "bnthtr",
 		"longname": "Brand New Theater!",
@@ -19,21 +19,6 @@
 		"name": "union1",
 		"longname": "UNION!!",
 		"type": "all"
-	},
-	{
-		"name": "drming",
-		"longname": "Dreaming!",
-		"type": "all"
-	},
-	{
-		"name": "aikane_full",
-		"longname": "AIKANE?",
-		"type": "angel"
-	},
-	{
-		"name": "startlip_full",
-		"longname": "Startrip",
-		"type": "fairy"
 	},
 	{
 		"name": "shtstr",
@@ -134,10 +119,27 @@
 		"name": "sakuha",
 		"longname": "Saku wa Ukiyo no Kimi Hanabi",
 		"type": "princess"
-	},
-	{
+	}
+	],
+	[{
 		"name": "hmt001",
 		"longname": "Blooming Star",
 		"type": "all"
-	}]
+	}],
+	[
+	{
+		"name": "drming",
+		"longname": "Dreaming!",
+		"type": "all"
+	},
+	{
+		"name": "aikane_full",
+		"longname": "AIKANE?",
+		"type": "angel"
+	},
+	{
+		"name": "startlip_full",
+		"longname": "Startrip",
+		"type": "fairy"
+	}]]
 }

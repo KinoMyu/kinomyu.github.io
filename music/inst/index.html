@@ -55,6 +55,10 @@
 	    background: linear-gradient(to right, #D5F178 , #D7D26A, #E9CB73, #D7D26A, #D5F178);
 	}
 	
+	.ex {
+	    background: linear-gradient(to right, #B9EF8F , #80DF70, #6AEF75, #80DF70, #B9EF8F);
+	}
+	
     .slick-slide img {
       width: 100%;
     }
@@ -86,7 +90,7 @@
 	}
 	
 	.songname {
-		margin-top: 1%;
+		margin-top: 2%;
 	    font-family: Mirishita;
 	    margin-left: 15.4%;
 	    text-align: left;
@@ -100,8 +104,8 @@
 	    font-family: Assistant;
 		text-align: center;
         margin: 0% 3%;
-		padding-top: 0.8%;
-		padding-bottom: 0.8%;
+		padding-top: 0.7%;
+		padding-bottom: 0.7%;
 		text-decoration: none;
 		display: inline-block;
 		font-size: 2.4vw;
@@ -109,6 +113,48 @@
 		border: black;
 		border-style: solid;
 		border-width: thin;
+	}
+	
+	label {
+	    font-family: Assistant;
+		text-align: center;
+		font-size: 1.1vw;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+        -ms-user-select: none;
+		user-select: none;
+		line-height: 1.4em;
+		padding-top: 1%;
+		padding-bottom: 1.6%;
+		border: black;
+		border-style: solid;
+		border-width: thin;
+		display: inline-block;
+	    background: linear-gradient(to right, #DDE5F5, #FFFFFF);
+		margin-left: -1px;
+	}
+	
+	.radiogroup {
+		position: relative;
+		width: 49.5%;
+		margin-top: -7.2%;
+	}
+	
+	.leftbutton {
+	    width: 12.7%;
+		border-radius:5em 0em 0em 5em;
+	}
+	
+	.middlebutton {
+	    width: 12.7%;
+		border-radius:0em;
+	}
+	
+	.rightbutton {
+	    width: 12.7%;
+		border-radius:0em 5em 5em 0em;
 	}
 	
 	.redbutton {
@@ -197,17 +243,26 @@
 	    background: linear-gradient(to right, #FFFFFF , #DDE5F5);
 		cursor: pointer;
 	}
+	
+	input[type="radio"] {
+	    display: none;
+	}
+	
+	input[type="radio"]:checked+label { 
+		color: white;
+	    background: linear-gradient(to right, #FF3F3F, #FF7B9E);
+	} 
   </style>
 </head>
 <body>
   <div class="nowplaying" id="np"></div>
   <div class="slider" id="slickslider"></div>
   <div class="spacer" id="spacer"></div>
+  <div class="radiogroup"><input id="songgroup0" name="songgroup" type="radio" value="0" checked="checked" onchange="changeGroup(this.value)"><label class="leftbutton" for="songgroup0">♪<br>Normal</label><input id="songgroup1" name="songgroup" type="radio" value="1" onchange="changeGroup(this.value)"><label class="middlebutton" for="songgroup1">♪<br>Special</label><input id="songgroup2" name="songgroup" type="radio" value="2" onchange="changeGroup(this.value)"><label class="rightbutton" for="songgroup2">♪<br>Unreleased</label></div><br>
   <div class="songname"></div>
     <button class="button redbutton" onclick="Play()">Play</button><button class="button whitebutton" onclick="Stop()">Stop</button><a id="mp3link" href="./mp3/bgm_inst_bnthtr.mp3"><button class="button whitebutton">Download</button></a><br>
-  <div class="volume-slider">
-    Volume<br>
-    <input id="volslider" class="input" type="range" min="0" max="100.0" step=".1" value="100" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+  <div class="volume-slider">Volume<br>
+    <input id="volslider" class="input" type="range" min="0" max="100.0" step=".1" value="50" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
   </div>
    
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
@@ -243,27 +298,13 @@ aud.onended = function() {
     $("#np").html("");
 };
 
-var songdata;
+var jsondata, songdata, currsong;
+var slidestoshow = 5;
 
 $(document).on('ready', function() {
 	$.getJSON("./songs.json", function(json) {
-		songdata = json.songs;
-		var generatedhtml = "";
-		$.each(songdata, function(i, data) {
-			generatedhtml += '<div><img src="./jacket/jacket_' + data.name + '.png"></div>';
-		});
-		$("#slickslider").html(generatedhtml);
-		$(".songname").html(songdata[0].longname);
-		addColor(songdata[0].type);
-		$(".slider").slick({
-			dots: false,
-			infinite: true,
-			centerMode: true,
-			slidesToShow: 5,
-			swipeToSlide: true,
-			arrows: false,
-			touchThreshold: 15
-		});
+	    jsondata = json;
+		initSlick(0);
 	});
 });
 
@@ -276,17 +317,53 @@ $('.slider').on('click', '.slick-slide', function (e) {
 });
 
 $('.slider').on('beforeChange', function (e, slick, currSlide, nextSlide) {
-	removeColor(songdata[currSlide].type);
-	addColor(songdata[nextSlide].type);
-	$(".songname").html(songdata[nextSlide].longname);
-	$("#mp3link").attr("href", "./mp3/bgm_inst_" + songdata[nextSlide].name + ".mp3");
+	removeColor(currsong.type);
+	currsong = songdata[nextSlide % songdata.length];
+	addColor(currsong.type);
+	$(".songname").html(currsong.longname);
+	$("#mp3link").attr("href", "./mp3/bgm_inst_" + currsong.name + ".mp3");
 });
-	
+
+function initSlick(index) {
+	songdata = jsondata.songs[index];
+	var generatedhtml = "";
+	var j = 0;
+	while(j < slidestoshow * 2)
+	{
+		$.each(songdata, function(i, data) {
+			generatedhtml += '<div><img src="./jacket/jacket_' + data.name + '.png"></div>';
+			++j;
+		});
+	}
+	$("#slickslider").html(generatedhtml);
+	if(currsong)
+	{
+		removeColor(currsong.type);
+	}
+	currsong = songdata[0];
+	$(".songname").html(currsong.longname);
+	addColor(currsong.type);
+	$(".slider").slick({
+		dots: false,
+		infinite: true,
+		centerMode: true,
+		slidesToShow: slidestoshow,
+		swipeToSlide: true,
+		arrows: false,
+		touchThreshold: 15
+	});
+}
+
+function changeGroup(index) {
+	$(".slider").slick("unslick");
+	initSlick(index);
+}
+
 function Play() {
     aud.volume = Math.pow($("#volslider").val() / 100, 2.0);
-    aud.setAttribute("src","./mp3/bgm_inst_" + songdata[$('.slider').slick('slickCurrentSlide')].name + ".mp3");
+    aud.setAttribute("src","./mp3/bgm_inst_" + currsong.name + ".mp3");
 	aud.play();
-	$("#np").html("▶ Now Playing: " + songdata[$('.slider').slick('slickCurrentSlide')].longname);
+	$("#np").html("▶ Now Playing: " + currsong.longname);
 }
 
 function Stop() {
