@@ -28,9 +28,14 @@
         box-sizing: border-box;
     }
 	
+	.sliderbackground {
+		z-index: 0;
+	}
+	
     .slider {
         width: 100%;
         padding-top: 5%;
+		z-index: 2;
     }
 	
 	.spacer {
@@ -140,6 +145,7 @@
 		position: relative;
 		width: 49.5%;
 		margin-top: -7.2%;
+		z-index: 1;
 	}
 	
 	.leftbutton {
@@ -256,7 +262,7 @@
 </head>
 <body>
   <div class="nowplaying" id="np"></div>
-  <div class="slider" id="slickslider"></div>
+  <div class="sliderbackground"><div class="slider" id="slickslider"></div></div>
   <div class="spacer" id="spacer"></div>
   <div class="radiogroup"><input id="songgroup0" name="songgroup" type="radio" value="0" checked="checked" onchange="changeGroup(this.value)"><label class="leftbutton" for="songgroup0">♪<br>Normal</label><input id="songgroup1" name="songgroup" type="radio" value="1" onchange="changeGroup(this.value)"><label class="middlebutton" for="songgroup1">♪<br>Special</label><input id="songgroup2" name="songgroup" type="radio" value="2" onchange="changeGroup(this.value)"><label class="rightbutton" for="songgroup2">♪<br>Unreleased</label></div><br>
   <div class="songname"></div>
@@ -283,13 +289,13 @@ if (!Array.prototype.includes) {
 
 function addColor(songtype)
 {
-	$("#slickslider").addClass(songtype);
+	$(".sliderbackground").addClass(songtype);
 	$("#spacer").addClass(songtype);
 }
 
 function removeColor(songtype)
 {
-	$("#slickslider").removeClass(songtype);
+	$(".sliderbackground").removeClass(songtype);
 	$("#spacer").removeClass(songtype);
 }
 
@@ -300,11 +306,12 @@ aud.onended = function() {
 
 var jsondata, songdata, currsong;
 var slidestoshow = 5;
+var ind = 0;
 
 $(document).on('ready', function() {
 	$.getJSON("./songs.json", function(json) {
 	    jsondata = json;
-		initSlick(0);
+		initSlick(ind);
 	});
 });
 
@@ -356,7 +363,8 @@ function initSlick(index) {
 
 function changeGroup(index) {
 	$(".slider").slick("unslick");
-	initSlick(index);
+	ind = index;
+	initSlick(ind);
 }
 
 function Play() {
