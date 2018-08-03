@@ -1,5 +1,6 @@
 {
-	"songs": [[
+	"songs": [
+	[
 	{
 	    "name": "bnthtr",
 		"longname": "Brand New Theater!",
@@ -119,13 +120,20 @@
 		"name": "sakuha",
 		"longname": "Saku wa Ukiyo no Kimi Hanabi",
 		"type": "princess"
+	},
+	{
+		"name": "sunrhy",
+		"longname": "Sun Rhythm Orchestra♪",
+		"type": "angel"
 	}
 	],
-	[{
+	[
+	{
 		"name": "hmt001",
 		"longname": "Blooming Star",
 		"type": "all"
-	}],
+	}
+	],
 	[
 	{
 		"name": "drming",
@@ -141,5 +149,6 @@
 		"name": "startlip_full",
 		"longname": "Startrip",
 		"type": "fairy"
-	}]]
+	}
+	]]
 }
