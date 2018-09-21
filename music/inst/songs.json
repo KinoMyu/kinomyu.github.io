@@ -135,6 +135,11 @@
 		"name": "braveh",
 		"longname": "brave HARMONY",
 		"type": "fairy"
+	},
+	{
+		"name": "oclove",
+		"longname": "Ordinary Clover",
+		"type": "angel"
 	}
 	],
 	[
