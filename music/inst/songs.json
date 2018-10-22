@@ -145,6 +145,11 @@
 		"name": "stamel",
 		"longname": "Starry Melody",
 		"type": "princess"
+	},
+	{
+		"name": "lastac",
+		"longname": "Last Actress",
+		"type": "fairy"
 	}
 	],
 	[
