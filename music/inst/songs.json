@@ -150,6 +150,11 @@
 		"name": "lastac",
 		"longname": "Last Actress",
 		"type": "fairy"
+	},
+	{
+		"name": "jparty",
+		"longname": "Jungle☆Party",
+		"type": "angel"
 	}
 	],
 	[
