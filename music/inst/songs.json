@@ -22,6 +22,31 @@
 		"type": "all"
 	},
 	{
+		"name": "theims",
+		"longname": "THE IDOLM@STER",
+		"type": "all"
+	},
+	{
+		"name": "jiburi",
+		"longname": "Jibun REST@RT",
+		"type": "all"
+	},
+	{
+		"name": "ready0",
+		"longname": "READY!!",
+		"type": "all"
+	},
+	{
+		"name": "macpri",
+		"longname": "Machiuke Prince",
+		"type": "all"
+	},
+	{
+		"name": "top000",
+		"longname": "ToP!!!!!!!!!!!!!",
+		"type": "all"
+	},
+	{
 		"name": "shtstr",
 		"longname": "Shooting Stars",
 		"type": "fairy"
@@ -155,6 +180,11 @@
 		"name": "jparty",
 		"longname": "Jungle☆Party",
 		"type": "angel"
+	},
+	{
+		"name": "harmon",
+		"longname": "Harmonics",
+		"type": "fairy"
 	}
 	],
 	[
