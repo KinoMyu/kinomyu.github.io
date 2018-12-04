@@ -185,6 +185,11 @@
 		"name": "harmon",
 		"longname": "Harmonics",
 		"type": "fairy"
+	},
+	{
+		"name": "predre",
+		"longname": "PRETTY DREAMER",
+		"type": "princess"
 	}
 	],
 	[
