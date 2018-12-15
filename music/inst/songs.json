@@ -22,6 +22,11 @@
 		"type": "all"
 	},
 	{
+		"name": "drming",
+		"longname": "Dreaming!",
+		"type": "all"
+	},
+	{
 		"name": "theims",
 		"longname": "THE IDOLM@STER",
 		"type": "all"
@@ -200,11 +205,6 @@
 	}
 	],
 	[
-	{
-		"name": "drming",
-		"longname": "Dreaming!",
-		"type": "all"
-	},
 	{
 		"name": "aikane_full",
 		"longname": "AIKANE?",
