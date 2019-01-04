@@ -13,14 +13,12 @@ if not os.path.exists("MillionLive"):
 
 # replace with OAuth stuff later rather than use a 3rd party API
 # OAuth secret in account .xml in /data/data
-conn = http.client.HTTPSConnection('otomestorm.anzu.work', 443)
-conn.request('GET', '/metas/latests')
+conn = http.client.HTTPSConnection('api.matsurihi.me', 443)
+conn.request('GET', '/mltd/v1/version/latest')
 r = conn.getresponse().read()
-assetver = json.loads(r)['data']['asset']['version']
+assetver = json.loads(r)['res']['version']
 print("Asset version is " + str(assetver))
-conn.request('GET', '/metas/assets/' + str(assetver))
-r = conn.getresponse().read()
-assetpath = json.loads(r)['data']['path']
+assetpath = json.loads(r)['res']['indexName']
 #
 
 serverURL = "https://td-assets.bn765.com"
@@ -90,10 +88,10 @@ with open('MillionLive\\' + 'MillionLive.manifest', "rb" ) as f:
                         hName = f.read(nSize).decode("ASCII")
                         #if 'song3' in nString:
                         if True: # filter files here
-                            #print(hName, nString)
+                            print(hName, nString)
                             #print('Hello ' + str(i))
-                            fileName.append(nString)
-                            hashName.append(hName)
+                            #fileName.append(nString)
+                            #hashName.append(hName)
                 except:
                         break
         pool.starmap(geturl, zip(hashName,fileName) )
