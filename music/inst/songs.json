@@ -225,6 +225,11 @@
 		"name": "getcre",
 		"longname": "Getsuyoubi no Cream Soda",
 		"type": "fairy"
+	},
+	{
+		"name": "bbvacs",
+		"longname": "Bonnes! Bonnes!! Vacances!!!",
+		"type": "princess"
 	}
 	],
 	[
