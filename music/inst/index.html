@@ -322,6 +322,16 @@ $('.slider').on('click', '.slick-slide', function (e) {
 	}
 });
 
+$('.slider').on('wheel', (function(e) {
+  e.preventDefault();
+
+  if (e.originalEvent.deltaY > 0) {
+    $(this).slick('slickNext');
+  } else {
+    $(this).slick('slickPrev');
+  }
+}));
+
 $('.slider').on('beforeChange', function (e, slick, currSlide, nextSlide) {
 	removeColor(currsong.type);
 	currsong = songdata[nextSlide % songdata.length];
