@@ -62,6 +62,11 @@
 		"type": "all"
 	},
 	{
+		"name": "hmt040",
+		"longname": "Invincible Justice",
+		"type": "all"
+	},
+	{
 		"name": "shtstr",
 		"longname": "Shooting Stars",
 		"type": "fairy"
