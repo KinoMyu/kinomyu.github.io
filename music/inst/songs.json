@@ -67,6 +67,11 @@
 		"type": "all"
 	},
 	{
+		"name": "jusvoi",
+		"longname": "Justice OR Voice",
+		"type": "all"
+	},
+	{
 		"name": "shtstr",
 		"longname": "Shooting Stars",
 		"type": "fairy"
