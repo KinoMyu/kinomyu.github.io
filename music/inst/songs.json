@@ -255,6 +255,11 @@
 		"name": "epitia",
 		"longname": "Episode. Tiara",
 		"type": "princess"
+	},
+	{
+		"name": "prmula",
+		"longname": "Primula",
+		"type": "fairy"
 	}
 	],
 	[
