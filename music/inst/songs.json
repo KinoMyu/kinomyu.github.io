@@ -260,6 +260,11 @@
 		"name": "prmula",
 		"longname": "Primula",
 		"type": "fairy"
+	},
+	{
+		"name": "leader",
+		"longname": "LEADER!!",
+		"type": "all"
 	}
 	],
 	[
